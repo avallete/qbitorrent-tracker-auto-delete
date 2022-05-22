@@ -28,9 +28,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "form-data": "^4.0.0",
-    "gluegun": "latest",
-    "node-fetch": "^3.2.4"
+    "gluegun": "latest"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",

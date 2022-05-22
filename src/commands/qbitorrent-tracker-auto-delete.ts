@@ -4,7 +4,7 @@ import type { AxiosInstance } from 'axios'
 
 type CommandArgs = {
   waitstart: boolean
-  webuiUrl: string
+  url: string
 }
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -29,15 +29,18 @@ async function removeTracker(
 
 const command: GluegunCommand = {
   name: 'qbitorrent-tracker-auto-delete',
+  description:
+    'Run a deamon which will automatically remove the trackers from your torrents on qbitorrent',
+  hidden: true,
   run: async (toolbox) => {
     const { print, parameters, http } = toolbox
     const argv = {
-      all: true,
       waitstart: true,
+      url: 'http://locahost:8080',
       ...parameters.options,
     } as unknown as CommandArgs
-    print.info(`Watching qbitorrent web UI on ${argv.webuiUrl}`)
-    const axiosInstance = http.create({ baseURL: argv.webuiUrl }).axiosInstance
+    print.info(`Watching qbitorrent web UI on ${argv.url}`)
+    const axiosInstance = http.create({ baseURL: argv.url }).axiosInstance
     while (true) {
       print.debug('tick')
       await sleep(1000)
