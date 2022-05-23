@@ -1,5 +1,3 @@
-// export types
-
 type TorrentStatesUnion =
   | 'downloading'
   | 'stalledDL'

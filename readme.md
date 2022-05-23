@@ -8,10 +8,15 @@ First you must activate the WebUI in your qbitorrent, add toggle the "bypass aut
 
 ![qbitorrent settings](https://user-images.githubusercontent.com/8771783/169672801-50188e5d-a17c-4302-8f46-6c193dd5da37.png)
 
-Then simply do:
+### Via npm
 
 ```
 npm install --global qbitorrent-tracker-auto-delete
+```
+
+### Via executable cli
+
+```
 ```
 
 ## Usage
