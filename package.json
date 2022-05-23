@@ -17,7 +17,8 @@
     "test": "jest",
     "watch": "jest --watch",
     "snapupdate": "jest --updateSnapshot",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "package": "pkg ./package.json"
   },
   "files": [
     "build",

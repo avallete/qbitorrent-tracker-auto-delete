@@ -16,8 +16,9 @@ npm install --global qbitorrent-tracker-auto-delete
 
 ### Via executable cli
 
-```
-```
+[For Windows](https://github.com/avallete/qbitorrent-tracker-auto-delete/raw/master/bin/qbitorrent-tracker-auto-delete-win.exe)
+[For Linux](https://github.com/avallete/qbitorrent-tracker-auto-delete/raw/master/bin/qbitorrent-tracker-auto-delete-linux.exe)
+[For MacOS](https://github.com/avallete/qbitorrent-tracker-auto-delete/raw/master/bin/qbitorrent-tracker-auto-delete-macos.exe)
 
 ## Usage
 

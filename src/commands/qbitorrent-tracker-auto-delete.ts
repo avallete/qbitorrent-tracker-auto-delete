@@ -42,8 +42,7 @@ const command: GluegunCommand = {
     print.info(`Watching qbitorrent web UI on ${argv.url}`)
     const axiosInstance = http.create({ baseURL: argv.url }).axiosInstance
     while (true) {
-      print.debug('tick')
-      await sleep(1000)
+      await sleep(2000)
       try {
         const data = await getMainData(axiosInstance)
         const torrentsWithTrackers = Object.values(data.torrents).filter(
