@@ -1,6 +1,6 @@
 {
   "name": "qbitorrent-tracker-auto-delete",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "qbitorrent-tracker-auto-delete CLI",
   "private": false,
   "types": "build/types/types.d.ts",
