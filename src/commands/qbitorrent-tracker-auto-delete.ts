@@ -15,16 +15,29 @@ async function getMainData(axios: AxiosInstance) {
   return result.data as MainDataQueryResponse
 }
 
-async function removeTracker(
+async function removeTrackers(
   axios: AxiosInstance,
-  trackerUrl: string,
-  torrentHash: string
+  torrentHash: string,
+  trackerUrls: Array<string>
 ) {
   const REMOVETRACKER_URL = `/api/v2/torrents/removeTrackers `
   const params = new URLSearchParams()
   params.append('hash', torrentHash)
-  params.append('urls', trackerUrl)
+  params.append('urls', trackerUrls.join('|'))
   return await axios.post(REMOVETRACKER_URL, params)
+}
+
+function extractTrackersUrls(
+  torrentHash: string,
+  trackers: Record<string, Array<string>>
+): string[] {
+  const urlsToRemove = []
+  for (const [key, torrentsHashs] of Object.entries(trackers)) {
+    if (torrentsHashs.includes(torrentHash)) {
+      urlsToRemove.push(key)
+    }
+  }
+  return urlsToRemove
 }
 
 const command: GluegunCommand = {
@@ -54,13 +67,16 @@ const command: GluegunCommand = {
         if (torrentToClean.length > 0) {
           print.info(`Trackers to clean: ${torrentToClean.length}`)
           await Promise.all(
-            torrentToClean.map((t) =>
-              removeTracker(
-                axiosInstance,
-                t.tracker,
-                t.infohash_v1 ? t.infohash_v1 : t.infohash_v2
+            torrentToClean.map((t) => {
+              const hash = t.infohash_v1 ? t.infohash_v1 : t.infohash_v2
+              const trackersUrls = extractTrackersUrls(hash, data.trackers)
+              print.debug(
+                `Trackers to remove on torrent ${hash}: ${trackersUrls.join(
+                  '|'
+                )}`
               )
-            )
+              return removeTrackers(axiosInstance, hash, trackersUrls)
+            })
           )
         }
       } catch (err) {
